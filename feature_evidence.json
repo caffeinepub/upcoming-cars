@@ -1,0 +1,185 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-build-the-homepage-with-seven-sections-1-hero-section-showcasing-2-3-featured-upcoming-ev-and-petrol-cars-with-full-width-imagery-car-name-expected-price-and-a-view-details-cta-2-latest-car-news-horizontal-slider-showing-the-5-most-recent-news-articles-with-thumbnail-title-and-date-3-trending-upcoming-cars-grid-displaying-cars-flagged-as-trending-4-ev-vs-petrol-comparison-highlights-a-static-visual-callout-comparing-key-attributes-5-featured-brands-section-showing-brand-logos-in-a-horizontal-strip-6-newsletter-subscription-form-with-email-input-and-submit-button-that-calls-subscribenewsletter-7-latest-automotive-articles-grid-with-article-cards",
+      "featureTitle": "Build the Homepage with seven sections: (1) Hero section showcasing 2–3 featured upcoming EV and petrol cars with full-width imagery, car name, expected price, and a 'View Details' CTA; (2) Latest Car News horizontal slider showing the 5 most recent news articles with thumbnail, title, and date; (3) Trending Upcoming Cars grid displaying cars flagged as trending; (4) EV vs Petrol Comparison Highlights — a static visual callout comparing key attributes; (5) Featured Brands section showing brand logos in a horizontal strip; (6) Newsletter Subscription form with email input and submit button that calls subscribeNewsletter; (7) Latest Automotive Articles grid with article cards.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/HeroSection.tsx",
+        "frontend/src/components/NewsSlider.tsx",
+        "frontend/src/components/NewsletterForm.tsx",
+        "frontend/src/components/TrendingCarsGrid.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-car-details-page-at-route-cars-id-that-displays-an-image-gallery-with-thumbnail-navigation-expected-launch-date-expected-price-in-inr-engine-battery-specifications-range-ev-or-mileage-petrol-top-speed-interior-and-exterior-features-list-safety-features-list-pros-and-cons-expert-review-text-and-a-star-based-user-rating-widget-that-submits-a-rating-via-submitrating-also-include-social-media-sharing-buttons-whatsapp-twitter-x-facebook-that-share-the-current-page-url",
+      "featureTitle": "Build a Car Details page at route /cars/:id that displays: an image gallery with thumbnail navigation, expected launch date, expected price in INR, engine/battery specifications, range (EV) or mileage (petrol), top speed, interior and exterior features list, safety features list, pros and cons, expert review text, and a star-based user rating widget that submits a rating via submitRating. Also include social media sharing buttons (WhatsApp, Twitter/X, Facebook) that share the current page URL.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/ImageGallery.tsx",
+        "frontend/src/components/SocialShareButtons.tsx",
+        "frontend/src/components/StarRatingWidget.tsx",
+        "frontend/src/pages/CarDetailPage.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-news-section-at-route-news-that-lists-all-news-articles-with-thumbnail-title-category-badge-date-and-a-short-excerpt-support-filtering-navigation-by-category-ev-market-trends-petrol-vs-ev-government-policies-launch-announcements-general-news-each-article-links-to-a-news-detail-page-at-news-id-showing-the-full-article-content-and-image",
+      "featureTitle": "Build a News section at route /news that lists all news articles with thumbnail, title, category badge, date, and a short excerpt. Support filtering/navigation by category: EV Market Trends, Petrol vs EV, Government Policies, Launch Announcements, General News. Each article links to a News Detail page at /news/:id showing the full article content and image.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/NewsCard.tsx",
+        "frontend/src/pages/NewsDetailPage.tsx",
+        "frontend/src/pages/NewsListingPage.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-search-filter-page-at-route-cars-that-includes-a-text-search-bar-calls-searchcars-and-sidebar-drawer-filters-for-type-ev-petrol-price-range-min-max-inr-slider-brand-dropdown-checkbox-list-and-launch-year-dropdown-results-display-as-a-responsive-card-grid-with-car-image-name-brand-type-badge-expected-price-and-expected-launch-date-each-card-links-to-the-car-details-page",
+      "featureTitle": "Build a Search & Filter page at route /cars that includes: a text search bar (calls searchCars), and sidebar/drawer filters for Type (EV/Petrol), Price Range (min/max INR slider), Brand (dropdown/checkbox list), and Launch Year (dropdown). Results display as a responsive card grid with car image, name, brand, type badge, expected price, and expected launch date. Each card links to the Car Details page.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/CarCard.tsx",
+        "frontend/src/components/CarFilters.tsx",
+        "frontend/src/pages/CarsSearchPage.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-car-comparison-page-at-route-compare-users-can-select-two-cars-from-a-searchable-dropdown-backed-by-all-available-cars-once-both-are-selected-display-a-side-by-side-comparison-table-covering-name-type-brand-expected-price-expected-launch-date-engine-battery-specs-range-mileage-top-speed-safety-features-pros-cons-and-expert-rating",
+      "featureTitle": "Build a Car Comparison page at route /compare. Users can select two cars from a searchable dropdown (backed by all available cars). Once both are selected, display a side-by-side comparison table covering: name, type, brand, expected price, expected launch date, engine/battery specs, range/mileage, top speed, safety features, pros, cons, and expert rating.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/CarSelector.tsx",
+        "frontend/src/pages/ComparisonPage.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-an-admin-panel-at-route-admin-accessible-without-authentication-for-this-build-it-should-have-two-tabs-cars-and-news-the-cars-tab-lists-all-cars-with-edit-and-delete-actions-plus-an-add-car-form-with-all-car-fields-the-news-tab-lists-all-articles-with-edit-and-delete-actions-plus-an-add-article-form-with-all-newsarticle-fields-all-form-submissions-call-the-corresponding-backend-admin-functions",
+      "featureTitle": "Build an Admin Panel at route /admin (accessible without authentication for this build). It should have two tabs: Cars and News. The Cars tab lists all cars with Edit and Delete actions, plus an Add Car form with all Car fields. The News tab lists all articles with Edit and Delete actions, plus an Add Article form with all NewsArticle fields. All form submissions call the corresponding backend admin functions.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/CarForm.tsx",
+        "frontend/src/components/NewsForm.tsx",
+        "frontend/src/pages/AdminPanel.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-dark-mode-and-light-mode-toggle-default-to-dark-mode-use-the-automotive-inspired-color-palette-primary-background-black-0a0a0a-accent-red-e41e2b-text-white-ffffff-and-surface-metallic-grey-2a2a2a-for-dark-mode-invert-to-light-surfaces-with-dark-text-for-light-mode-apply-consistent-styling-across-all-pages",
+      "featureTitle": "Implement dark mode and light mode toggle. Default to dark mode. Use the automotive-inspired color palette: primary background Black (#0A0A0A), accent Red (#E41E2B), text White (#FFFFFF), and surface Metallic Grey (#2A2A2A) for dark mode; invert to light surfaces with dark text for light mode. Apply consistent styling across all pages.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/ThemeToggle.tsx",
+        "frontend/src/contexts/ThemeContext.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-cohesive-automotive-inspired-visual-design-system-across-the-entire-site-bold-sans-serif-typography-with-a-sporty-feel-smooth-css-transitions-and-hover-effects-on-cards-and-buttons-subtle-motion-on-hero-section-entry-a-sticky-responsive-navbar-with-the-upcoming-cars-logo-wordmark-site-wide-navigation-links-home-cars-news-compare-admin-the-dark-light-mode-toggle-and-footer-with-brand-tagline-quick-links-and-social-media-icons-include-placeholder-ad-banner-spaces-728-90-leaderboard-on-desktop-320-50-on-mobile-in-the-homepage-and-news-listing-page",
+      "featureTitle": "Apply a cohesive automotive-inspired visual design system across the entire site: bold sans-serif typography with a sporty feel, smooth CSS transitions and hover effects on cards and buttons, subtle motion on hero section entry, a sticky responsive navbar with the Upcoming Cars logo/wordmark, site-wide navigation links (Home, Cars, News, Compare, Admin), the dark/light mode toggle, and footer with brand tagline, quick links, and social media icons. Include placeholder ad banner spaces (728×90 leaderboard on desktop, 320×50 on mobile) in the homepage and news listing page.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/Footer.tsx",
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/components/Navbar.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

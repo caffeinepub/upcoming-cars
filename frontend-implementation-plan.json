@@ -1,0 +1,287 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Upcoming Cars — Automotive News & Marketing Website Frontend",
+  "requirements": [
+    {
+      "id": "REQ-2",
+      "summary": "Build Homepage with seven sections: Hero with featured cars, Latest News slider, Trending Cars grid, EV vs Petrol comparison, Featured Brands, Newsletter form, and Latest Articles",
+      "acceptanceCriteria": [
+        "Hero section cycles through featured cars and links to their detail pages",
+        "News slider is scrollable and shows the latest 5 articles",
+        "Trending cars section queries backend for isTrending=true cars",
+        "Newsletter form shows a success/error message after submission",
+        "All seven sections are visible and responsive on mobile, tablet, and desktop"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Create the main homepage component with seven sections: (1) Hero showcasing 2-3 featured cars with imagery from backend getAllCars filtered by isFeatured=true, using generated image frontend/public/assets/generated/hero-banner.dim_1920x800.png as background; (2) Latest News horizontal slider fetching 5 most recent articles via getAllArticles; (3) Trending Cars grid via getAllCars filtered by isTrending=true; (4) EV vs Petrol static comparison visual using generated image frontend/public/assets/generated/ev-vs-petrol-bg.dim_1200x400.png; (5) Featured Brands logo strip; (6) Newsletter form calling backend subscribeNewsletter; (7) Latest Articles grid. Use blob-storage ExternalBlob.getDirectURL() for car and news images. Include placeholder ad banners using generated images frontend/public/assets/generated/ad-banner-desktop.dim_728x90.png and frontend/public/assets/generated/ad-banner-mobile.dim_320x50.png. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/HeroSection.tsx",
+          "operation": "create",
+          "description": "Create hero section component displaying 2-3 featured cars with full-width imagery, car name, expected price in INR, and 'View Details' CTA linking to /cars/:id. Use generated image frontend/public/assets/generated/hero-banner.dim_1920x800.png as background. Fetch featured cars from backend. Use ExternalBlob.getDirectURL() for car images or generated placeholder frontend/public/assets/generated/car-placeholder.dim_800x500.png if no images available. Include smooth transitions and automotive-inspired styling. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/NewsSlider.tsx",
+          "operation": "create",
+          "description": "Create horizontal scrollable news slider showing 5 most recent articles with thumbnail, title, and date. Fetch via backend getAllArticles sorted by publishedAt descending. Use ExternalBlob.getDirectURL() for article images or generated placeholder frontend/public/assets/generated/news-placeholder.dim_600x400.png if unavailable. Include navigation arrows and smooth scroll behavior. Link each article to /news/:id. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/TrendingCarsGrid.tsx",
+          "operation": "create",
+          "description": "Create responsive grid displaying trending cars filtered from backend getAllCars where isTrending=true. Each card shows car image via ExternalBlob.getDirectURL() or generated placeholder frontend/public/assets/generated/car-placeholder.dim_800x500.png, name, brand, type badge, expected price, and expected launch date. Link to /cars/:id. Include hover effects. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/NewsletterForm.tsx",
+          "operation": "create",
+          "description": "Create newsletter subscription form with email input and submit button. On submit, call backend subscribeNewsletter and display success or error message. Include form validation for email format. Style with automotive-inspired design and red accent color."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for HomePage at path '/' using React Router. Import and register the HomePage component. Ensure the route is accessible from the navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build Car Details page displaying gallery, specs, features, pros/cons, expert review, user rating widget, and social sharing buttons",
+      "acceptanceCriteria": [
+        "Gallery cycles through all images with thumbnail previews",
+        "EV cars show Range field; petrol cars show Mileage field",
+        "Star rating widget shows current average and allows a user to submit a new rating",
+        "Social share buttons open the correct share dialogs with the page URL",
+        "Page is fully responsive"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CarDetailPage.tsx",
+          "operation": "create",
+          "description": "Create car detail page at route /cars/:id. Fetch car data via backend getCar. Display image gallery with thumbnails using ExternalBlob.getDirectURL() or generated placeholder frontend/public/assets/generated/car-placeholder.dim_800x500.png. Show expected launch date, expected price in INR, engine/battery specs, range (for EV) or mileage (for petrol) based on carType, top speed, interior/exterior features lists, safety features list, pros/cons, and expert review. Include star rating widget and social share buttons (WhatsApp, Twitter/X, Facebook) using Web Share API or URL-based sharing. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ImageGallery.tsx",
+          "operation": "create",
+          "description": "Create image gallery component with main image display and thumbnail navigation. Accept array of ExternalBlob images and use getDirectURL() for rendering. Include click handlers to switch main image. Use generated placeholder frontend/public/assets/generated/car-placeholder.dim_800x500.png for empty states. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/StarRatingWidget.tsx",
+          "operation": "create",
+          "description": "Create interactive star rating widget displaying current average rating and allowing user to submit new rating. On rating submission, call backend submitRating with carId and rating value. Show success/error feedback after submission. Include hover states and automotive-styled stars."
+        },
+        {
+          "path": "frontend/src/components/SocialShareButtons.tsx",
+          "operation": "create",
+          "description": "Create social sharing component with buttons for WhatsApp, Twitter/X, and Facebook. Use Web Share API where supported or URL-based share links (e.g., whatsapp://send?text=, twitter.com/intent/tweet?url=, facebook.com/sharer/sharer.php?u=). Share current page URL and car name."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for CarDetailPage at path '/cars/:id' using React Router. Import and register the CarDetailPage component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Build News section with article listing, category filtering, and news detail page",
+      "acceptanceCriteria": [
+        "News listing page shows all articles sorted by publishedAt descending",
+        "Category filter tabs correctly filter the displayed articles",
+        "News detail page renders full article content",
+        "Both pages are responsive"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/NewsListingPage.tsx",
+          "operation": "create",
+          "description": "Create news listing page at route /news. Fetch all articles via backend getAllArticles sorted by publishedAt descending. Display article cards with thumbnail via ExternalBlob.getDirectURL() or generated placeholder frontend/public/assets/generated/news-placeholder.dim_600x400.png, title, category badge, date, and excerpt. Include category filter tabs for: EV Market Trends, Petrol vs EV, Government Policies, Launch Announcements, General News. Link each article to /news/:id. Include ad banner placeholder using generated image frontend/public/assets/generated/ad-banner-desktop.dim_728x90.png on desktop and frontend/public/assets/generated/ad-banner-mobile.dim_320x50.png on mobile. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/NewsDetailPage.tsx",
+          "operation": "create",
+          "description": "Create news detail page at route /news/:id. Fetch article via backend getArticle. Display full article content including title, category, date, image via ExternalBlob.getDirectURL() or generated placeholder frontend/public/assets/generated/news-placeholder.dim_600x400.png, tags, and full content. Make responsive and apply automotive-inspired styling. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/NewsCard.tsx",
+          "operation": "create",
+          "description": "Create reusable news article card component displaying thumbnail via ExternalBlob.getDirectURL() or generated placeholder frontend/public/assets/generated/news-placeholder.dim_600x400.png, title, category badge, date, and excerpt. Include hover effects and link to detail page. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add routes for NewsListingPage at path '/news' and NewsDetailPage at path '/news/:id' using React Router. Import and register both components."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Build Search & Filter page with text search, type filter, price range slider, brand selector, and launch year dropdown",
+      "acceptanceCriteria": [
+        "Text search returns matching cars as the user types (debounced)",
+        "All four filters can be combined and correctly narrow results",
+        "Clearing filters restores the full car list",
+        "Results grid is responsive across screen sizes"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CarsSearchPage.tsx",
+          "operation": "create",
+          "description": "Create search and filter page at route /cars. Include text search bar calling backend searchCars (debounced), and filters for Type (EV/Petrol), Price Range (min/max INR slider), Brand (dropdown/checkbox list), and Launch Year (dropdown) calling backend getCarsByFilter. Display results as responsive card grid with car image via ExternalBlob.getDirectURL() or generated placeholder frontend/public/assets/generated/car-placeholder.dim_800x500.png, name, brand, type badge, expected price, and expected launch date. Link each card to /cars/:id. Include clear filters button. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/CarCard.tsx",
+          "operation": "create",
+          "description": "Create reusable car card component displaying car image via ExternalBlob.getDirectURL() or generated placeholder frontend/public/assets/generated/car-placeholder.dim_800x500.png, name, brand, type badge (EV/Petrol), expected price in INR, and expected launch date. Include hover effects and link to /cars/:id. Make responsive. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/CarFilters.tsx",
+          "operation": "create",
+          "description": "Create car filters component with sidebar/drawer layout containing: Type filter (EV/Petrol radio/checkboxes), Price Range slider (min/max INR), Brand dropdown/checkbox list, and Launch Year dropdown. Include clear all filters button. Emit filter change events to parent component. Make responsive with mobile drawer."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Update route for CarsSearchPage at path '/cars' (if not already added). Ensure it's registered and accessible from navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Build Car Comparison page with searchable dual-car selector and side-by-side comparison table",
+      "acceptanceCriteria": [
+        "User can select any two cars from the full car list",
+        "Comparison table renders correctly with both cars' data side by side",
+        "Highlighted cells indicate which car wins on numeric attributes (price, speed, range/mileage)",
+        "Page is responsive with horizontal scroll on small screens"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ComparisonPage.tsx",
+          "operation": "create",
+          "description": "Create comparison page at route /compare. Include two searchable dropdowns populated with all cars from backend getAllCars. Once both cars selected, fetch comparison via backend getCarComparison and display side-by-side table covering: name, type, brand, expected price, expected launch date, engine/battery specs, range/mileage, top speed, safety features, pros, cons, and expert rating. Highlight cells where one car wins on numeric attributes (lower price, higher speed, better range/mileage). Include car images via ExternalBlob.getDirectURL() or generated placeholder frontend/public/assets/generated/car-placeholder.dim_800x500.png. Make responsive with horizontal scroll on small screens. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/CarSelector.tsx",
+          "operation": "create",
+          "description": "Create searchable car selector dropdown component. Accept list of cars and emit selected car on change. Include search/filter functionality within dropdown. Display car name and brand in options."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for ComparisonPage at path '/compare' using React Router. Import and register the ComparisonPage component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Build Admin Panel with Cars and News management tabs, including CRUD operations for both entities",
+      "acceptanceCriteria": [
+        "Admin can add a new car with all required fields and it appears in the car listing",
+        "Admin can edit and delete existing cars",
+        "Admin can add, edit, and delete news articles",
+        "Form validation prevents submission with missing required fields",
+        "Changes are immediately reflected after save"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AdminPanel.tsx",
+          "operation": "create",
+          "description": "Create admin panel page at route /admin. Include two tabs: Cars and News. Cars tab lists all cars from backend getAllCars with Edit and Delete actions, plus Add Car form with fields: name, brand, type (EV/Petrol), expectedLaunchDate, expectedPriceInr, engineOrBatterySpecs, range, mileage, topSpeed, interiorFeatures (array), exteriorFeatures (array), safetyFeatures (array), pros (array), cons (array), expertReview, images (multiple ExternalBlob uploads using blob-storage ExternalBlob.fromBytes()), isTrending, isFeatured. Call backend adminAddCar, adminUpdateCar, adminDeleteCar. News tab lists all articles from backend getAllArticles with Edit and Delete actions, plus Add Article form with fields: title, category, content, image (ExternalBlob upload), tags (array). Call backend adminAddNews, adminUpdateNews, adminDeleteNews. Include form validation and success/error feedback. Use blob-storage ExternalBlob.fromBytes() for image uploads with upload progress tracking via withUploadProgress(). Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/CarForm.tsx",
+          "operation": "create",
+          "description": "Create reusable car form component with all Car fields including image upload using blob-storage ExternalBlob.fromBytes(). Support add and edit modes. Emit form data on submit. Include validation for required fields. Use blob-storage withUploadProgress() to show upload progress. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/NewsForm.tsx",
+          "operation": "create",
+          "description": "Create reusable news article form component with all NewsArticle fields including image upload using blob-storage ExternalBlob.fromBytes(). Support add and edit modes. Emit form data on submit. Include validation for required fields. Use blob-storage withUploadProgress() to show upload progress. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for AdminPanel at path '/admin' using React Router. Import and register the AdminPanel component. Ensure it's accessible from navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement dark and light mode toggle with automotive-inspired color palette, defaulting to dark mode and persisting preference",
+      "acceptanceCriteria": [
+        "A toggle button in the navbar switches between dark and light mode",
+        "Mode preference persists in localStorage across page refreshes",
+        "All pages and components correctly reflect the active theme",
+        "No white flash on initial load in dark mode"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/contexts/ThemeContext.tsx",
+          "operation": "create",
+          "description": "Create React context for theme management. Provide theme state (dark/light), toggle function, and persist preference to localStorage. Initialize with dark mode as default. Prevent white flash on initial load by checking localStorage before first render. Apply automotive color palette: dark mode uses Black (#0A0A0A) background, Red (#E41E2B) accents, White (#FFFFFF) text, Metallic Grey (#2A2A2A) surfaces; light mode inverts to light surfaces with dark text."
+        },
+        {
+          "path": "frontend/src/components/ThemeToggle.tsx",
+          "operation": "create",
+          "description": "Create theme toggle button component consuming ThemeContext. Display icon indicating current mode (moon/sun). On click, call theme toggle function. Style with automotive-inspired design and smooth transition."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define CSS custom properties (CSS variables) for dark and light mode color palettes. Dark mode: --bg-primary: #0A0A0A, --accent: #E41E2B, --text-primary: #FFFFFF, --surface: #2A2A2A. Light mode: invert to light surfaces with dark text. Use .dark and .light class selectors on root element. Apply colors globally across all elements. Include smooth transitions for theme changes."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap the application with ThemeContext provider. Apply theme class (dark/light) to root element based on context state. Ensure theme is applied before first paint to prevent flash."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Apply cohesive automotive-inspired design system with sticky navbar, footer, smooth animations, and ad banner placeholders",
+      "acceptanceCriteria": [
+        "Navbar is sticky and collapses to a hamburger menu on mobile",
+        "Hover effects are present on all car cards, news cards, and CTA buttons",
+        "Ad banner placeholder areas are visible and clearly marked on homepage and news page",
+        "Footer renders consistently on all pages",
+        "Overall design is visually consistent across all routes"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Navbar.tsx",
+          "operation": "create",
+          "description": "Create sticky navbar component with logo using generated image frontend/public/assets/generated/upcoming-cars-logo.dim_400x120.png, navigation links (Home, Cars, News, Compare, Admin), and ThemeToggle component. Collapse to hamburger menu on mobile. Use automotive-inspired bold sans-serif typography and smooth transitions. Include hover effects on links."
+        },
+        {
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "create",
+          "description": "Create footer component with brand tagline, quick links (Home, Cars, News, Compare, Admin), and social media icons (placeholders). Use automotive-inspired styling consistent with overall design. Render at bottom of all pages."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "create",
+          "description": "Create layout wrapper component that includes Navbar at top and Footer at bottom. Wrap page content in between. Apply consistent spacing and ensure footer stays at bottom. Use this layout for all pages."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add global styles for automotive-inspired design system: bold sans-serif typography (e.g., Inter, Montserrat), smooth CSS transitions on buttons and cards, hover effects (scale, shadow, color shift), motion animations for hero section entry. Define utility classes for consistent spacing, shadows, and effects. Ensure all styles work with both dark and light themes."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind config with automotive color palette (Black #0A0A0A, Red #E41E2B, White #FFFFFF, Metallic Grey #2A2A2A), custom fonts (bold sans-serif), animation utilities, and responsive breakpoints. Configure dark mode support using class strategy."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap all routes with Layout component to ensure consistent navbar and footer on all pages. Apply global theme classes from ThemeContext."
+        }
+      ]
+    }
+  ]
+}

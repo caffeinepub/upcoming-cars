@@ -1,0 +1,247 @@
+{
+  "kind": "build_request",
+  "title": "Upcoming Cars — Automotive News & Marketing Website",
+  "projectName": "Upcoming Cars",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement the backend data model and actor with the following stable data structures: Car (id, name, brand, type: EV|Petrol, expectedLaunchDate, expectedPriceInr, engineOrBatterySpecs, range, mileage, topSpeed, interiorFeatures, exteriorFeatures, safetyFeatures, pros, cons, expertReview, images: [Text], isTrending, isFeatured), NewsArticle (id, title, category, content, imageUrl, publishedAt, tags), UserRating (carId, rating, count), NewsletterSubscriber (email). Expose CRUD query/update functions for all entities, plus: getCarsByFilter(type, minPrice, maxPrice, brand, launchYear), searchCars(query), getCarComparison(carId1, carId2), submitRating(carId, rating), subscribeNewsletter(email), adminAddCar, adminUpdateCar, adminDeleteCar, adminAddNews, adminUpdateNews, adminDeleteNews.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Car specifications and detailed information",
+          "Car comparison features",
+          "Car launch dates and price predictions",
+          "Admin panel for uploading news and cars",
+          "Newsletter subscription",
+          "User rating system"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All Car and NewsArticle records persist across canister upgrades",
+        "getCarsByFilter returns correctly filtered results for all filter combinations",
+        "searchCars returns cars matching name or brand substring",
+        "getCarComparison returns full data for both cars side by side",
+        "submitRating updates the running average rating for a car",
+        "subscribeNewsletter stores email and rejects duplicates",
+        "Admin functions add, update, and delete entries correctly"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Build the Homepage with seven sections: (1) Hero section showcasing 2–3 featured upcoming EV and petrol cars with full-width imagery, car name, expected price, and a 'View Details' CTA; (2) Latest Car News horizontal slider showing the 5 most recent news articles with thumbnail, title, and date; (3) Trending Upcoming Cars grid displaying cars flagged as trending; (4) EV vs Petrol Comparison Highlights — a static visual callout comparing key attributes; (5) Featured Brands section showing brand logos in a horizontal strip; (6) Newsletter Subscription form with email input and submit button that calls subscribeNewsletter; (7) Latest Automotive Articles grid with article cards.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Hero section with featured upcoming EV & petrol cars",
+          "Latest car news slider",
+          "Trending upcoming cars",
+          "EV vs Petrol comparison highlights",
+          "Featured brands section",
+          "Newsletter subscription",
+          "Latest automotive articles"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Hero section cycles through featured cars and links to their detail pages",
+        "News slider is scrollable and shows the latest 5 articles",
+        "Trending cars section queries backend for isTrending=true cars",
+        "Newsletter form shows a success/error message after submission",
+        "All seven sections are visible and responsive on mobile, tablet, and desktop"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build a Car Details page at route /cars/:id that displays: an image gallery with thumbnail navigation, expected launch date, expected price in INR, engine/battery specifications, range (EV) or mileage (petrol), top speed, interior and exterior features list, safety features list, pros and cons, expert review text, and a star-based user rating widget that submits a rating via submitRating. Also include social media sharing buttons (WhatsApp, Twitter/X, Facebook) that share the current page URL.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Car images gallery",
+          "Expected launch date",
+          "Expected price in India",
+          "Engine / Battery specifications",
+          "Range (for EV)",
+          "Mileage (for petrol)",
+          "Top speed",
+          "Interior & exterior features",
+          "Safety features",
+          "Pros & Cons",
+          "Expert review",
+          "User rating system",
+          "Social media sharing buttons"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Gallery cycles through all images with thumbnail previews",
+        "EV cars show Range field; petrol cars show Mileage field",
+        "Star rating widget shows current average and allows a user to submit a new rating",
+        "Social share buttons open the correct share dialogs with the page URL",
+        "Page is fully responsive"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Build a News section at route /news that lists all news articles with thumbnail, title, category badge, date, and a short excerpt. Support filtering/navigation by category: EV Market Trends, Petrol vs EV, Government Policies, Launch Announcements, General News. Each article links to a News Detail page at /news/:id showing the full article content and image.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Daily automotive news updates",
+          "EV market trends",
+          "Petrol vs EV debates",
+          "Government policies related to vehicles",
+          "Upcoming car launch announcements"
+        ]
+      },
+      "acceptanceCriteria": [
+        "News listing page shows all articles sorted by publishedAt descending",
+        "Category filter tabs correctly filter the displayed articles",
+        "News detail page renders full article content",
+        "Both pages are responsive"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Build a Search & Filter page at route /cars that includes: a text search bar (calls searchCars), and sidebar/drawer filters for Type (EV/Petrol), Price Range (min/max INR slider), Brand (dropdown/checkbox list), and Launch Year (dropdown). Results display as a responsive card grid with car image, name, brand, type badge, expected price, and expected launch date. Each card links to the Car Details page.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Search functionality",
+          "Filter by: EV / Petrol, Price range, Brand, Launch year"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Text search returns matching cars as the user types (debounced)",
+        "All four filters can be combined and correctly narrow results",
+        "Clearing filters restores the full car list",
+        "Results grid is responsive across screen sizes"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Build a Car Comparison page at route /compare. Users can select two cars from a searchable dropdown (backed by all available cars). Once both are selected, display a side-by-side comparison table covering: name, type, brand, expected price, expected launch date, engine/battery specs, range/mileage, top speed, safety features, pros, cons, and expert rating.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Compare two cars feature",
+          "Car comparison features"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can select any two cars from the full car list",
+        "Comparison table renders correctly with both cars' data side by side",
+        "Highlighted cells indicate which car wins on numeric attributes (price, speed, range/mileage)",
+        "Page is responsive with horizontal scroll on small screens"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Build an Admin Panel at route /admin (accessible without authentication for this build). It should have two tabs: Cars and News. The Cars tab lists all cars with Edit and Delete actions, plus an Add Car form with all Car fields. The News tab lists all articles with Edit and Delete actions, plus an Add Article form with all NewsArticle fields. All form submissions call the corresponding backend admin functions.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Admin panel for uploading news and cars"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin can add a new car with all required fields and it appears in the car listing",
+        "Admin can edit and delete existing cars",
+        "Admin can add, edit, and delete news articles",
+        "Form validation prevents submission with missing required fields",
+        "Changes are immediately reflected after save"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Implement dark mode and light mode toggle. Default to dark mode. Use the automotive-inspired color palette: primary background Black (#0A0A0A), accent Red (#E41E2B), text White (#FFFFFF), and surface Metallic Grey (#2A2A2A) for dark mode; invert to light surfaces with dark text for light mode. Apply consistent styling across all pages.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Clean, modern UI with dark and light mode option",
+          "Automotive-inspired color palette (Black, Red, White, Metallic Grey)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A toggle button in the navbar switches between dark and light mode",
+        "Mode preference persists in localStorage across page refreshes",
+        "All pages and components correctly reflect the active theme",
+        "No white flash on initial load in dark mode"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Apply a cohesive automotive-inspired visual design system across the entire site: bold sans-serif typography with a sporty feel, smooth CSS transitions and hover effects on cards and buttons, subtle motion on hero section entry, a sticky responsive navbar with the Upcoming Cars logo/wordmark, site-wide navigation links (Home, Cars, News, Compare, Admin), the dark/light mode toggle, and footer with brand tagline, quick links, and social media icons. Include placeholder ad banner spaces (728×90 leaderboard on desktop, 320×50 on mobile) in the homepage and news listing page.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Smooth animations and hover effects",
+          "Fully responsive (mobile + tablet + desktop)",
+          "Ad banner space for monetization",
+          "Automotive-inspired color palette"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Navbar is sticky and collapses to a hamburger menu on mobile",
+        "Hover effects are present on all car cards, news cards, and CTA buttons",
+        "Ad banner placeholder areas are visible and clearly marked on homepage and news page",
+        "Footer renders consistently on all pages",
+        "Overall design is visually consistent across all routes"
+      ]
+    }
+  ],
+  "constraints": [
+    "All backend logic must remain in a single Motoko actor in backend/main.mo",
+    "Do not edit any files under frontend/src/hooks/ or frontend/src/components/ui",
+    "No external authentication — admin panel is unprotected for this build",
+    "No external APIs or third-party integrations; all data is managed within the canister",
+    "Social sharing uses native Web Share API or URL-based share links only — no SDK integrations"
+  ],
+  "nonGoals": [
+    "Real-time chat or live notifications",
+    "Email delivery for newsletter (only store subscriber emails in canister)",
+    "Internet Identity or user login/auth flows",
+    "GPS or geolocation features",
+    "Payment or e-commerce functionality",
+    "SEO meta-tag generation beyond static HTML",
+    "Multi-language support"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Upcoming Cars website logo — bold red and white wordmark on transparent background with a sleek minimalist car silhouette icon (upcoming-cars-logo.dim_400x120.png)",
+      "Hero banner background — dramatic dark racetrack at night with motion-blur light trails, cinematic wide shot (hero-banner.dim_1920x800.png)",
+      "Placeholder car card image — stylized silhouette of a futuristic sedan on a dark metallic gradient background (car-placeholder.dim_800x500.png)",
+      "Placeholder news article thumbnail — abstract automotive machinery close-up with metallic grey tones (news-placeholder.dim_600x400.png)",
+      "EV vs Petrol comparison section background — split graphic, left side electric blue circuit patterns, right side red flame textures (ev-vs-petrol-bg.dim_1200x400.png)",
+      "Ad banner placeholder desktop — horizontal banner with 'Advertisement' label, dark metallic texture (ad-banner-desktop.dim_728x90.png)",
+      "Ad banner placeholder mobile — compact banner with 'Advertisement' label, dark metallic texture (ad-banner-mobile.dim_320x50.png)"
+    ],
+    "edits": []
+  }
+}

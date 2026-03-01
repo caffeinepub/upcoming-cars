@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Light mode - automotive inspired */
+    --background: 0.97 0 0;
+    --foreground: 0.1 0 0;
+    --card: 1 0 0;
+    --card-foreground: 0.1 0 0;
+    --popover: 1 0 0;
+    --popover-foreground: 0.1 0 0;
+    --primary: 0.48 0.22 25;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.93 0 0;
+    --secondary-foreground: 0.1 0 0;
+    --muted: 0.93 0 0;
+    --muted-foreground: 0.45 0 0;
+    --accent: 0.48 0.22 25;
+    --accent-foreground: 1 0 0;
+    --destructive: 0.48 0.22 25;
+    --destructive-foreground: 1 0 0;
+    --border: 0.88 0 0;
+    --input: 0.88 0 0;
+    --ring: 0.48 0.22 25;
+    --chart-1: 0.48 0.22 25;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.97 0 0;
+    --sidebar-foreground: 0.1 0 0;
+    --sidebar-primary: 0.48 0.22 25;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.93 0 0;
+    --sidebar-accent-foreground: 0.1 0 0;
+    --sidebar-border: 0.88 0 0;
+    --sidebar-ring: 0.48 0.22 25;
+
+    /* Custom automotive tokens */
+    --auto-red: oklch(0.48 0.22 25);
+    --auto-dark: oklch(0.1 0 0);
+    --auto-surface: oklch(0.93 0 0);
+    --auto-metallic: oklch(0.55 0 0);
+  }
+
+  .dark {
+    --background: 0.1 0 0;
+    --foreground: 0.97 0 0;
+    --card: 0.15 0 0;
+    --card-foreground: 0.97 0 0;
+    --popover: 0.18 0 0;
+    --popover-foreground: 0.97 0 0;
+    --primary: 0.55 0.22 25;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.2 0 0;
+    --secondary-foreground: 0.97 0 0;
+    --muted: 0.2 0 0;
+    --muted-foreground: 0.6 0 0;
+    --accent: 0.55 0.22 25;
+    --accent-foreground: 1 0 0;
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 1 0 0;
+    --border: 1 0 0 / 10%;
+    --input: 1 0 0 / 12%;
+    --ring: 0.55 0.22 25;
+    --chart-1: 0.55 0.22 25;
+    --chart-2: 0.696 0.17 162.48;
+    --chart-3: 0.769 0.188 70.08;
+    --chart-4: 0.627 0.265 303.9;
+    --chart-5: 0.645 0.246 16.439;
+    --sidebar: 0.15 0 0;
+    --sidebar-foreground: 0.97 0 0;
+    --sidebar-primary: 0.55 0.22 25;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.2 0 0;
+    --sidebar-accent-foreground: 0.97 0 0;
+    --sidebar-border: 1 0 0 / 10%;
+    --sidebar-ring: 0.55 0.22 25;
+
+    --auto-red: oklch(0.55 0.22 25);
+    --auto-dark: oklch(0.1 0 0);
+    --auto-surface: oklch(0.2 0 0);
+    --auto-metallic: oklch(0.4 0 0);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+@layer components {
+  .auto-heading {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .auto-card {
+    @apply bg-card border border-border rounded-lg overflow-hidden transition-all duration-300;
+  }
+
+  .auto-card:hover {
+    @apply shadow-lg;
+    transform: translateY(-4px);
+  }
+
+  .btn-auto-primary {
+    @apply bg-primary text-primary-foreground font-semibold px-6 py-2.5 rounded transition-all duration-200;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .btn-auto-primary:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+  }
+
+  .type-badge-ev {
+    @apply text-xs font-bold px-2 py-0.5 rounded-full;
+    background: oklch(0.35 0.15 250);
+    color: oklch(0.9 0.1 250);
+  }
+
+  .type-badge-petrol {
+    @apply text-xs font-bold px-2 py-0.5 rounded-full;
+    background: oklch(0.35 0.15 50);
+    color: oklch(0.9 0.1 50);
+  }
+
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    @apply text-3xl font-bold uppercase tracking-wide;
+  }
+
+  .red-accent-line {
+    @apply h-1 w-12 rounded-full;
+    background: var(--auto-red);
+  }
+
+  .nav-link {
+    @apply text-sm font-semibold uppercase tracking-wider transition-colors duration-200;
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .nav-link:hover {
+    color: var(--auto-red);
+  }
+
+  .nav-link.active {
+    color: var(--auto-red);
+  }
+}
+
+@layer utilities {
+  .text-auto-red {
+    color: var(--auto-red);
+  }
+
+  .bg-auto-red {
+    background-color: var(--auto-red);
+  }
+
+  .border-auto-red {
+    border-color: var(--auto-red);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .hero-gradient {
+    background: linear-gradient(
+      to right,
+      oklch(0.08 0 0 / 95%) 0%,
+      oklch(0.08 0 0 / 70%) 50%,
+      oklch(0.08 0 0 / 20%) 100%
+    );
+  }
+
+  .card-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 30%;
+    height: 200%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      oklch(1 0 0 / 8%),
+      transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+  }
+
+  .card-shine:hover::after {
+    left: 130%;
+  }
+}
